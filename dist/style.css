@@ -1,0 +1,39 @@
+*{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+header {
+    background-color: #e63946;
+    padding: 40px;
+    font-size: 50px;
+    color: white;
+}
+
+main {
+    margin: 50px 10px;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card-header {
+    background-color: #3a86ff;
+    color: white;
+}
+
+.card-title{
+    font-size: 30px;
+}
+
+.card-descr{
+    font-size: 26px;
+}
+
+.card-body{
+    background-color: whitesmoke;
+}
+
+.card {
+    min-width: 20rem;
+    box-shadow: 4px 2px 2px gray;
+}
+
