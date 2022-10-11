@@ -4,6 +4,12 @@ const makeHTML = require('./src/makeHTML.js');
 
 const idTracker = [];
 
+let endHTML = `   </main>
+
+</body>
+</html> 
+`
+
 
 const employeeQuestions = [
     {
@@ -15,7 +21,6 @@ const employeeQuestions = [
         type: 'input',
         name: 'ID',
         message: "What is the employee's ID number: ",
-        default: "69",
         validate: (answer) => {
             if (isNaN(answer)) {
                 return 'Please enter a valid number'
@@ -62,11 +67,14 @@ function main() {
         choices: ['Engineer','Intern', 'Finish Team Build' ]
     }])
     .then((answers) => {
-      let {managerName, manID, manEmail, officeNumber, chooseEmployee} = answers
-      let manager = new Manager(managerName, manID, manEmail, officeNumber);
+      const {name, ID, email, officeNumber, chooseEmployee} = answers
+      let manager = new Manager(name, ID, email, officeNumber);
+      console.log(manager);
       makeHTML.concatManager(manager);
       console.log(answers);
       if (chooseEmployee == 'Finish Team Build'){
+        fs.writeFile('./dist/index.html', makeHTML.generateHTML()+endHTML, (error) => error ?
+        console.log(error) : console.log("Success!"));
         return;
       } else {
       checkChoice(chooseEmployee);
@@ -90,8 +98,8 @@ function makeEngineer() {
         }
     ])
     .then((answersEng) => {
-        let {engineerName, engID, engEmail, github, chooseEmployee} = answersEng
-        let engineer = new Engineer(engineerName,engID,engEmail,github);
+        let {name, ID, email, github, chooseEmployee} = answersEng
+        let engineer = new Engineer(name, ID, email, github);
         makeHTML.concatEngineer(engineer);
         console.log(answersEng);
         if (chooseEmployee == 'Finish Team Build'){
@@ -122,8 +130,8 @@ function makeIntern() {
         }
     ])
     .then((answersInt) => {
-        let {internName, internID, internEmail, school, chooseEmployee} = answersInt
-        let intern = new Intern(internName,internID,internEmail,school)
+        let {name, ID, email, school, chooseEmployee} = answersInt
+        let intern = new Intern(name, ID, email, school)
         makeHTML.concatIntern(intern);
         console.log(answersInt);
         if (chooseEmployee == 'Finish Team Build'){
@@ -174,9 +182,13 @@ class Employee {
 }
 
 class Manager extends Employee {
-    constructor(_name, _id, _email, _officeNum) {
+    constructor (_name, _id, _email, _officeNum) {
         super(_name, _id, _email);
         this.officeNumber = _officeNum;
+    }
+
+    getOfficeNum () {
+        return this.officeNumber;
     }
 
     getRole () {
@@ -188,6 +200,7 @@ class Manager extends Employee {
 class Engineer extends Employee {
     constructor(_name, _id, _email, _github) {
         super(_name, _id, _email);
+
         this.github = _github;
     }
 

@@ -23,23 +23,25 @@ let htmlTemplate = `<!DOCTYPE html>
     `
 
 function generateHTML() {
-
+    return htmlTemplate;
 }
 
 function concatManager(manager) {
-    return htmlTemplate+ ` <div class="card" style="width: 20rem;">
+    htmlTemplate = htmlTemplate+ ` <div class="card" style="width: 20rem;">
     <div class="card-header d-flex flex-column">
-      <h2 class="card-title">${manager.getName()}</h2>
-      <p class="card-descr"> Yolo </p>
+      <h2 class="card-title"> ${manager.getName()}</h2>
+      <p class="card-descr"> ${manager.getRole()} </p>
     </div>
     <div class="card-body">
         <ul class="list-group list-group-flush border">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
+            <li class="list-group-item">${manager.getId()}</li>
+            <li class="list-group-item">${manager.getEmail()}</li>
+            <li class="list-group-item">${manager.getOfficeNum()}</li>
         </ul>
     </div>
-  </div>`
+  </div>`;
+
+    return;
 }
 
 function concatEngineer(engineer) {
