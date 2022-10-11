@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const axios = require('axios');
 const makeHTML = require('./src/makeHTML.js');
 const Employee = require('./lib/Employee.js');
 const Manager = require('./lib/Manager.js');
@@ -19,14 +20,20 @@ const employeeQuestions = [
     {
         type: 'input',
         name: 'name',
-        message: "Employee's name? "
+        message: "Employee's name? ",
+        validate: (answer) => {
+            if (!answer) {
+                return 'Please enter a valid number'
+            }
+            return true
+        }
     },
     {
         type: 'input',
         name: 'ID',
         message: "What is the employee's ID number: ",
         validate: (answer) => {
-            if (isNaN(answer)) {
+            if (isNaN(answer) || !answer) {
                 return 'Please enter a valid number'
             }
             return true
@@ -58,7 +65,7 @@ function main() {
             name: 'officeNumber',
             message: "What is the manager's office number: ",
             validate: (answer) => {
-                if (isNaN(answer)) {
+                if (isNaN(answer) || !answer) {
                     return 'Please enter a valid number'
                 }
                 return true
@@ -93,6 +100,12 @@ function makeEngineer() {
             type: 'input',
             name: 'github',
             message: "What is the engineer's github: ",
+            validate: (answer) => {
+                if (!answer) {
+                    return 'Please enter a valid number'
+                }
+                return true
+            }
         },
         {
             type: 'list',
@@ -127,6 +140,12 @@ function makeIntern() {
             type: 'input',
             name: 'school',
             message: "What is the intern's graduation school: ",
+            validate: (answer) => {
+                if (!answer) {
+                    return 'Please enter a valid number'
+                }
+                return true
+            }
         },
         {
             type: 'list',
