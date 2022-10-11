@@ -1,6 +1,10 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const makeHTML = require('./src/makeHTML.js');
+const Employee = require('./lib/Employee.js');
+const Manager = require('./lib/Manager.js');
+const Engineer = require('./lib/Engineer.js');
+const Intern = require('./lib/Intern.js');
 
 const idTracker = [];
 
@@ -159,79 +163,6 @@ function checkChoice(employee) {
     } else {
         return;
     }
-}
-
-class Employee {
-    constructor (_name, _id, _email) {
-        this.name = _name;
-        this.id = _id;
-        this.email = _email;
-    }
-
-    getName () {
-        return this.name;
-    }
-
-    getId () {
-        return this.id;
-    }
-
-    getEmail () {
-        return this.email;
-    }
-
-    getRole () {
-        return 'Employee';
-    }
-}
-
-class Manager extends Employee {
-    constructor (_name, _id, _email, _officeNum) {
-        super(_name, _id, _email);
-        this.officeNumber = _officeNum;
-    }
-
-    getOfficeNum () {
-        return this.officeNumber;
-    }
-
-    getRole () {
-        return 'Manager';
-    }
-
-}
-
-class Engineer extends Employee {
-    constructor(_name, _id, _email, _github) {
-        super(_name, _id, _email);
-
-        this.github = _github;
-    }
-
-    getGitHub () {
-        return this.github;
-    }
-
-    getRole () {
-        return 'Engineer';
-    }
-
-}
-
-class Intern extends Employee {
-    constructor(_name, _id, _email, _school) {
-        super(_name, _id, _email);
-        this.school = _school;
-    }
-
-    getSchool () {
-        return this.school;
-    }
-
-    getRole () {
-        return 'Intern';
-    }
-
 }
 
 main();
