@@ -11,6 +11,7 @@ let htmlTemplate = `<!DOCTYPE html>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Team Profile Viewer</title>
 </head>
 <body>
@@ -30,26 +31,54 @@ function concatManager(manager) {
     htmlTemplate = htmlTemplate+ ` <div class="card" style="width: 20rem;">
     <div class="card-header d-flex flex-column">
       <h2 class="card-title"> ${manager.getName()}</h2>
-      <p class="card-descr"> ${manager.getRole()} </p>
+      <p class="card-descr"> <i class='fa fa-coffee'></i> ${manager.getRole()} </p>
     </div>
     <div class="card-body">
         <ul class="list-group list-group-flush border">
-            <li class="list-group-item">${manager.getId()}</li>
-            <li class="list-group-item">${manager.getEmail()}</li>
-            <li class="list-group-item">${manager.getOfficeNum()}</li>
+            <li class="list-group-item"> ID: ${manager.getId()}</li>
+            <li class="list-group-item"> Email: <a href="mailto:${manager.getEmail()}"> ${manager.getEmail()} </a> </li>
+            <li class="list-group-item"> Office Number: ${manager.getOfficeNum()}</li>
         </ul>
     </div>
-  </div>`;
+    </div>`;
 
     return;
 }
 
 function concatEngineer(engineer) {
-    
+    htmlTemplate = htmlTemplate+ ` <div class="card" style="width: 20rem;">
+    <div class="card-header d-flex flex-column">
+      <h2 class="card-title"> ${engineer.getName()}</h2>
+      <p class="card-descr"> <i class='fa fa-keyboard-o'></i> ${engineer.getRole()} </p>
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush border">
+            <li class="list-group-item"> ID: ${engineer.getId()}</li>
+            <li class="list-group-item"> Email: <a href="mailto:${engineer.getEmail()}"> ${engineer.getEmail()} </a> </li>
+            <li class="list-group-item"> GitHub: <a href="https://github.com/${engineer.getGitHub()}" target="_blank"> ${engineer.getGitHub()}</a> </li>
+        </ul>
+    </div>
+    </div>`;
+
+    return;
 }
 
 function concatIntern(intern) {
-    
+    htmlTemplate = htmlTemplate+ ` <div class="card" style="width: 20rem;">
+    <div class="card-header d-flex flex-column">
+      <h2 class="card-title"> ${intern.getName()}</h2>
+      <p class="card-descr"> <i class='fa fa-graduation-cap'></i> ${intern.getRole()} </p>
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush border">
+            <li class="list-group-item"> ID: ${intern.getId()}</li>
+            <li class="list-group-item"> <a href="mailto:${intern.getEmail()}"> ${intern.getEmail()} </a> </li>
+            <li class="list-group-item"> School: ${intern.getSchool()}</li>
+        </ul>
+    </div>
+    </div>`;
+
+    return;
     
 }
 

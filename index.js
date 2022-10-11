@@ -4,11 +4,11 @@ const makeHTML = require('./src/makeHTML.js');
 
 const idTracker = [];
 
-let endHTML = `   </main>
-
+let endHTML = `
+    </main>
 </body>
 </html> 
-`
+`;
 
 
 const employeeQuestions = [
@@ -103,6 +103,8 @@ function makeEngineer() {
         makeHTML.concatEngineer(engineer);
         console.log(answersEng);
         if (chooseEmployee == 'Finish Team Build'){
+          fs.writeFile('./dist/index.html', makeHTML.generateHTML()+endHTML, (error) => error ?
+          console.log(error) : console.log("Success!"));
           return;
         } else if (chooseEmployee == 'Engineer') {
             makeEngineer(chooseEmployee);
@@ -135,6 +137,8 @@ function makeIntern() {
         makeHTML.concatIntern(intern);
         console.log(answersInt);
         if (chooseEmployee == 'Finish Team Build'){
+          fs.writeFile('./dist/index.html', makeHTML.generateHTML()+endHTML, (error) => error ?
+          console.log(error) : console.log("Success!"));
           return;
         } else if (chooseEmployee == 'Engineer') {
             makeEngineer(chooseEmployee);
