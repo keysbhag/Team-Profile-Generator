@@ -1,3 +1,4 @@
+// Tests for the Manager Class
 const Employee = require('../lib/Employee.js');
 const Manager = require('../lib/Manager.js');
 
@@ -7,7 +8,7 @@ test("Can make a Manager object", () => {
     expect(typeof (manager)).toBe("object");
 });
 
-test("Can make an manager object with properties", () => {
+test("Can make an Manager object with properties", () => {
     const manager = new Manager('keys', 1, 'keyshawn@hotmail.com', 1)
     
     expect(manager.name).toBe('keys');
@@ -16,7 +17,7 @@ test("Can make an manager object with properties", () => {
     expect(manager.officeNumber).toBe(1);
 });
 
-test("Can get manager office number with getOfficeNum", () => {
+test("Can get Manager office number with getOfficeNum", () => {
     const manager = new Manager('keys', 1, 'keyshawn@hotmail.com', 1)
     
     expect(manager.getOfficeNum()).toBe(1);

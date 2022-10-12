@@ -1,5 +1,6 @@
 const inquirer = require("inquirer")
 
+// Started HTML Template which holds the top part of the HTML before any content is created
 let htmlTemplate = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,12 +22,15 @@ let htmlTemplate = `<!DOCTYPE html>
     </header>
 
     <main class="d-flex justify-content-center">
-    `
+    `;
 
+// Supporting function to return the htmlTemplate string literal
 function generateHTML() {
     return htmlTemplate;
 }
 
+// When called, function will be passed the created instance Manager object and fill in the
+// template literal, then concat that to the initial string 
 function concatManager(manager) {
     htmlTemplate = htmlTemplate+ ` <div class="card" style="width: 20rem;">
     <div class="card-header d-flex flex-column">
@@ -36,7 +40,7 @@ function concatManager(manager) {
     <div class="card-body">
         <ul class="list-group list-group-flush border">
             <li class="list-group-item"> ID: ${manager.getId()}</li>
-            <li class="list-group-item"> Email: <a href="mailto:${manager.getEmail()}"> ${manager.getEmail()} </a> </li>
+            <li class="list-group-item"> Email: <a href="mailto:${manager.getEmail()}" target="_blank"> ${manager.getEmail()} </a> </li>
             <li class="list-group-item"> Office Number: ${manager.getOfficeNum()}</li>
         </ul>
     </div>
@@ -45,6 +49,8 @@ function concatManager(manager) {
     return;
 }
 
+// When called, function will be passed the created instance Engineer object and fill in the
+// template literal, then concat that to the main string template 
 function concatEngineer(engineer) {
     htmlTemplate = htmlTemplate+ ` <div class="card" style="width: 20rem;">
     <div class="card-header d-flex flex-column">
@@ -54,7 +60,7 @@ function concatEngineer(engineer) {
     <div class="card-body">
         <ul class="list-group list-group-flush border">
             <li class="list-group-item"> ID: ${engineer.getId()}</li>
-            <li class="list-group-item"> Email: <a href="mailto:${engineer.getEmail()}"> ${engineer.getEmail()} </a> </li>
+            <li class="list-group-item"> Email: <a href="mailto:${engineer.getEmail()}" target="_blank"> ${engineer.getEmail()} </a> </li>
             <li class="list-group-item"> GitHub: <a href="https://github.com/${engineer.getGitHub()}" target="_blank"> ${engineer.getGitHub()}</a> </li>
         </ul>
     </div>
@@ -63,6 +69,8 @@ function concatEngineer(engineer) {
     return;
 }
 
+// When called, function will be passed the created instance Intern object and fill in the
+// template literal, then concat that to the main string template 
 function concatIntern(intern) {
     htmlTemplate = htmlTemplate+ ` <div class="card" style="width: 20rem;">
     <div class="card-header d-flex flex-column">
@@ -72,7 +80,7 @@ function concatIntern(intern) {
     <div class="card-body">
         <ul class="list-group list-group-flush border">
             <li class="list-group-item"> ID: ${intern.getId()}</li>
-            <li class="list-group-item"> <a href="mailto:${intern.getEmail()}"> ${intern.getEmail()} </a> </li>
+            <li class="list-group-item"> Email: <a href="mailto:${intern.getEmail()}" target="_blank"> ${intern.getEmail()} </a> </li>
             <li class="list-group-item"> School: ${intern.getSchool()}</li>
         </ul>
     </div>

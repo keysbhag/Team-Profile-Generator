@@ -1,3 +1,4 @@
+// Tests for the Intern Class
 const Employee = require('../lib/Employee.js');
 const Intern = require('../lib/Intern.js');
 
@@ -7,7 +8,7 @@ test("Can make a Intern object", () => {
     expect(typeof (intern)).toBe("object");
 });
 
-test("Can make an intern object with properties", () => {
+test("Can make an Intern object with properties", () => {
     const intern = new Intern('keys', 1, 'keyshawn@hotmail.com', 'york')
     
     expect(intern.name).toBe('keys');
@@ -16,13 +17,13 @@ test("Can make an intern object with properties", () => {
     expect(intern.school).toBe('york');
 });
 
-test("Can get intern school with getSchool", () => {
+test("Can get Intern school with getSchool", () => {
     const intern = new Intern('keys', 1, 'keyshawn@hotmail.com', 'york')
     
     expect(intern.getSchool()).toBe('york');
 })
 
-test("Can get 'intern' role with getRole", () => {
+test("Can get 'Intern' role with getRole", () => {
     const intern = new Intern('keys', 1, 'keyshawn@hotmail.com', 'york')
     
     expect(intern.getRole()).toBe('Intern');
