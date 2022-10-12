@@ -16,13 +16,13 @@ test("Can make an manager object with properties", () => {
     expect(manager.officeNumber).toBe(1);
 });
 
-test("Can get github username with getGitHub", () => {
+test("Can get manager office number with getOfficeNum", () => {
     const manager = new Manager('keys', 1, 'keyshawn@hotmail.com', 1)
     
     expect(manager.getOfficeNum()).toBe(1);
 })
 
-test("Can get 'engineer' role username with getRole", () => {
+test("Can get 'Manager' role with getRole", () => {
     const manager = new Manager('keys', 1, 'keyshawn@hotmail.com', 1)
     
     expect(manager.getRole()).toBe('Manager');

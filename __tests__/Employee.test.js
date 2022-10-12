@@ -32,7 +32,7 @@ test("Gets email using getEmail()", () => {
     expect(employee.getEmail()).toBe('keyshawn@hotmail.com');
 });
 
-test("Gets role using getRole()", () => {
+test("Gets role 'employee' using getRole()", () => {
     const employee = new Employee('keyshawn', 1, "keyshawn@hotmail.com")
 
     expect(employee.getRole()).toBe('Employee');
