@@ -23,7 +23,7 @@ const employeeQuestions = [
         message: "Employee's name? ",
         validate: (answer) => {
             if (!answer) {
-                return 'Please enter a valid number'
+                return 'Please enter a valid input'
             }
             return true
         }
@@ -35,6 +35,11 @@ const employeeQuestions = [
         validate: (answer) => {
             if (isNaN(answer) || !answer) {
                 return 'Please enter a valid number'
+            }
+            for (let i = 0; i < idTracker.length; i++) {
+                if(answer == idTracker[i]){
+                    return 'Please enter a unique ID'
+                }
             }
             return true
         }
@@ -78,11 +83,13 @@ function main() {
         choices: ['Engineer','Intern', 'Finish Team Build' ]
     }])
     .then((answers) => {
+      console.log(`\n`)
+      console.log(`--------------------------------------`)
+      console.log(`\n`)
       const {name, ID, email, officeNumber, chooseEmployee} = answers
       let manager = new Manager(name, ID, email, officeNumber);
-      console.log(manager);
+      idTracker.push(ID);
       makeHTML.concatManager(manager);
-      console.log(answers);
       if (chooseEmployee == 'Finish Team Build'){
         fs.writeFile('./dist/index.html', makeHTML.generateHTML()+endHTML, (error) => error ?
         console.log(error) : console.log("Success!"));
@@ -102,7 +109,7 @@ function makeEngineer() {
             message: "What is the engineer's github: ",
             validate: (answer) => {
                 if (!answer) {
-                    return 'Please enter a valid number'
+                    return 'Please enter a valid input'
                 }
                 return true
             }
@@ -115,10 +122,13 @@ function makeEngineer() {
         }
     ])
     .then((answersEng) => {
+        console.log(`\n`)
+        console.log(`--------------------------------------`)
+        console.log(`\n`)
         let {name, ID, email, github, chooseEmployee} = answersEng
         let engineer = new Engineer(name, ID, email, github);
+        idTracker.push(ID);
         makeHTML.concatEngineer(engineer);
-        console.log(answersEng);
         if (chooseEmployee == 'Finish Team Build'){
           fs.writeFile('./dist/index.html', makeHTML.generateHTML()+endHTML, (error) => error ?
           console.log(error) : console.log("Success!"));
@@ -142,7 +152,7 @@ function makeIntern() {
             message: "What is the intern's graduation school: ",
             validate: (answer) => {
                 if (!answer) {
-                    return 'Please enter a valid number'
+                    return 'Please enter a valid input'
                 }
                 return true
             }
@@ -155,13 +165,16 @@ function makeIntern() {
         }
     ])
     .then((answersInt) => {
+        console.log(`\n`)
+        console.log(`--------------------------------------`)
+        console.log(`\n`)
         let {name, ID, email, school, chooseEmployee} = answersInt
         let intern = new Intern(name, ID, email, school)
+        idTracker.push(ID);
         makeHTML.concatIntern(intern);
-        console.log(answersInt);
         if (chooseEmployee == 'Finish Team Build'){
           fs.writeFile('./dist/index.html', makeHTML.generateHTML()+endHTML, (error) => error ?
-          console.log(error) : console.log("Success!"));
+          console.log(error) : console.log("Success! Your Team has been built! Check the distribution folder for your beautifully formatted team list"));
           return;
         } else if (chooseEmployee == 'Engineer') {
             makeEngineer(chooseEmployee);
@@ -179,8 +192,6 @@ function checkChoice(employee) {
     }
     else if(employee === 'Intern') {
         makeIntern();
-    } else {
-        return;
     }
 }
 
